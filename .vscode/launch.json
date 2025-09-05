@@ -9,8 +9,16 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/build/refactor_tool",
-            "args": ["${workspaceFolder}/tests/tests_data/for_refactor.cpp"],
-            "cwd": "${workspaceFolder}",
+            "args": ["test1.cpp", "test2.cpp", "test3.cpp"],
+            "cwd": "${workspaceFolder}/tests/tests_data/",
+            "preLaunchTask": "GCC: Build Debug app",
+        },
+        {
+            "type": "cppdbg",
+            "request": "launch",
+            "name": "Debug tests",
+            "program": "${workspaceFolder}/build/refactor_tool_tests",
+            "cwd": "${workspaceFolder}/build",
             "preLaunchTask": "GCC: Build Debug app",
         }
     ]
