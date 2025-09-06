@@ -76,7 +76,11 @@
     **Пример установки для Debian/Ubuntu:**
     ```bash
     sudo apt-get update
+    ```
+    ```bash
     sudo apt-get install -y cmake make g++-15
+    ```
+    ```bash
     sudo apt-get install -y llvm-20-dev clang-20 libclang-20-dev
     ```
 
@@ -104,6 +108,8 @@
 ```bash
 # Убедитесь, что проект собран
 cd build
+```
+```bash
 ctest
 ```
 
@@ -116,14 +122,17 @@ ctest
 ```bash
 # Даем скрипту права на выполнение
 cd ..
+```
+```bash
 chmod +x check_refactor.sh
-
+```
+```bash
 # Запускаем
 ./check_refactor.sh
 ```
 
 **Ожидаемый вывод:**
-```
+```shell
 ===== Результаты тестов =====
 Тест tests/tests_data/test1.cpp пройден!
 Тест tests/tests_data/test2.cpp пройден!
@@ -159,13 +168,19 @@ cd build/
 ```bash
 # Компилируем с ASan
 g++ -g -fsanitize=address -o leak_before ../tests/tests_data/leak_example.cpp
+```
+```bash
 ./leak_before  # ASan сообщит об утечке 4000 байт
 ```
 
 **После рефакторинга:**
 ```bash
 ./refactor_tool ../tests/tests_data/leak_example.cpp --
+```
+```bash
 g++ -g -fsanitize=address -o leak_after ../tests/tests_data/leak_example.cpp
+```
+```bash
 ./leak_after   # Программа завершается без ошибок
 ```
 
@@ -180,15 +195,26 @@ cd build/
 **До рефакторинга:**
 ```bash
 g++ -O2 -g -o perf_before ../tests/tests_data/perf_example.cpp
+```
+```bash
 # perf требует запуска с правами sudo
 sudo perf record ./perf_before
+```
+```bash
 sudo perf report # Отчет покажет высокое потребление CPU функциями копирования
 ```
 
 **После рефакторинга:**
 ```bash
 ./refactor_tool ../tests/tests_data/perf_example.cpp --
+```
+```bash
 g++ -O2 -g -o perf_after ../tests/tests_data/perf_example.cpp
+```
+```bash
 sudo perf record ./perf_after # Программа выполнится значительно быстрее
+```
+```bash
 sudo perf report # Функции копирования исчезнут из топа
+
 ```
